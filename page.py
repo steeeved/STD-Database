@@ -48,7 +48,9 @@ def addData():
 
 
 def displayData():
-    pass
+    studentList.delete(0, END)
+    for row in Database.viewData():
+        studentList.insert(END, row, str(""))
 
 
 def deleteData():
