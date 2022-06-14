@@ -52,9 +52,37 @@ def displayData():
     for row in Database.viewData():
         studentList.insert(END, row, str(""))
 
+def studentRec(event):
+    global sd
+    searchStd = studentList.curselection()[0]
+    sd = studentList.get(searchStd)
+
+    admissionNoEntry.delete(0, END)
+    admissionNoEntry.insert(END, sd[1])
+
+    fullNameEntry.delete(0, END)
+    fullNameEntry.insert(END, sd[2])
+
+    birthDateEntry.delete(0, END)
+    birthDateEntry.insert(END, sd[3])
+
+    ageEntry.delete(0, END)
+    ageEntry.insert(END, sd[4])
+
+    parentsContactEntry.delete(0, END)
+    parentsContactEntry.insert(END, sd[5])
+
+    comboGender.delete(0, END)
+    comboGender.insert(END, sd[6])
+
+    comboCourse.delete(0, END)
+    comboCourse.insert(END, sd[7])
 
 def deleteData():
-    pass
+    if (len(admissionNoEntry.get()) !=0):
+        Database.deleteRec(sd[0])
+        clearData()
+        displayData()
 
 
 def searchData():
