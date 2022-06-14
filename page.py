@@ -8,11 +8,15 @@ root.title('Digikids Student DataBase')
 root.iconbitmap("digikids.ico")
 root.geometry("1250x650")
 
-#Using RGB colors
+# Using RGB colors
+
+
 def rgb(rgb):
     return "#%02x%02x%02x" % rgb
 
 # functions
+
+
 def Exit():
     exit = tkinter.messagebox.askyesno(
         "Exit", "Confirm if you want to exit"
@@ -21,27 +25,43 @@ def Exit():
         root.destroy()
         return
 
+
 def clearData():
     admissionNoEntry.delete(0, END)
     fullNameEntry.delete(0, END)
     birthDateEntry.delete(0, END)
     ageEntry.delete(0, END)
     parentsContactEntry.delete(0, END)
+    studentList.delete(0, END)
+
 
 def addData():
-    pass
+    if (len(admissionNoEntry.get()) == 0 or len(fullNameEntry.get()) == 0 or len(birthDateEntry.get()) == 0 or len(ageEntry.get()) == 0
+            or len(parentsContactEntry.get()) == 0 or len(comboGender.get()) == 0 or len(comboCourse.get()) == 0):
+        messagebox.showinfo("Incomplete Data", "Please fill all the fields")
+    else:
+        Database.addStudentRecord(
+            admissionNoEntry.get(), fullNameEntry.get(), birthDateEntry.get(), ageEntry.get(), parentsContactEntry.get(), comboGender.get(), comboCourse.get())
+    studentList.delete(0, END)
+    studentList.insert(END, (admissionNoEntry.get(), fullNameEntry.get(), birthDateEntry.get(
+    ), ageEntry.get(), parentsContactEntry.get(), comboGender.get(), comboCourse.get()))
+
 
 def displayData():
     pass
 
+
 def deleteData():
     pass
+
 
 def searchData():
     pass
 
+
 def updateData():
     pass
+
 
 def studentRec():
     pass
@@ -72,7 +92,8 @@ dataFrameRight = LabelFrame(dataFrame, width=450, height=300, padx=31, pady=3, b
 dataFrameRight.pack(side=RIGHT)
 
 # create a label
-l_1 = Label(TitFrame, text="STUDENT DATABASE", font=('Coiny', 47), bg="cadet blue")
+l_1 = Label(TitFrame, text="STUDENT DATABASE",
+            font=('Coiny', 47), bg="cadet blue")
 l_1.grid()
 
 
@@ -85,7 +106,7 @@ admissionNoEntry = Entry(dataFrameLeft, font=(
 admissionNoEntry.grid(row=0, column=1, sticky=W)
 
 fullName = Label(dataFrameLeft, font=("aerial", 15, "bold"),
-                    text="Full Name:", padx=2, pady=2, bg="Grey")
+                 text="Full Name:", padx=2, pady=2, bg="Grey")
 fullName.grid(row=1, column=0, sticky=W)
 fullNameEntry = Entry(dataFrameLeft, font=(
     "Comfortaa Light", 15, "bold"),  width=39)
@@ -93,13 +114,14 @@ fullNameEntry.grid(row=1, column=1, sticky=W)
 
 
 birthDate = Label(dataFrameLeft, font=("aerial", 15, "bold"),
-               text="Date of Birth:", padx=2, pady=2, bg="Grey")
+                  text="Date of Birth:", padx=2, pady=2, bg="Grey")
 birthDate.grid(row=2, column=0, sticky=W)
-birthDateEntry = Entry(dataFrameLeft, font=("Comfortaa Light", 15, "bold"), width=39)
+birthDateEntry = Entry(dataFrameLeft, font=(
+    "Comfortaa Light", 15, "bold"), width=39)
 birthDateEntry.grid(row=2, column=1, sticky=W)
 
 age = Label(dataFrameLeft, font=("aerial", 15, "bold"),
-               text="Age:", padx=2, pady=2, bg="Grey")
+            text="Age:", padx=2, pady=2, bg="Grey")
 age.grid(row=3, column=0, sticky=W)
 ageEntry = Entry(dataFrameLeft, font=("Comfortaa Light", 15, "bold"), width=39)
 ageEntry.grid(row=3, column=1, sticky=W)
@@ -112,7 +134,7 @@ parentsContactEntry = Entry(dataFrameLeft, font=(
 parentsContactEntry.grid(row=4, column=1, sticky=W)
 
 Gender = Label(dataFrameLeft, font=("aerial", 15, "bold"),
-                  text="Gender:", padx=2, pady=2, bg="Grey")
+               text="Gender:", padx=2, pady=2, bg="Grey")
 Gender.grid(row=5, column=0, sticky=W)
 comboGender = Combobox(dataFrameLeft, font=(
     "Comfortaa Light", 15, "bold"), width=37)
@@ -125,7 +147,8 @@ course = Label(dataFrameLeft, font=(
 course.grid(row=6, column=0, sticky=W)
 comboCourse = Combobox(dataFrameLeft, font=(
     "Comfortaa Light", 15, "bold"), width=37)
-comboCourse["values"] = ("--choose--","Roblox Game Development", "Python", "Introduction to web development", "Scratch")
+comboCourse["values"] = ("--choose--", "Roblox Game Development",
+                         "Python", "Introduction to web development", "Scratch")
 comboCourse.current(0)
 comboCourse.grid(row=6, column=1, sticky=W)
 
