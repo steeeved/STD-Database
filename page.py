@@ -22,7 +22,11 @@ def Exit():
         return
 
 def clearData():
-    pass
+    admissionNoEntry.delete(0, END)
+    fullNameEntry.delete(0, END)
+    birthDateEntry.delete(0, END)
+    ageEntry.delete(0, END)
+    parentsContactEntry.delete(0, END)
 
 def addData():
     pass
@@ -64,7 +68,7 @@ dataFrameLeft = LabelFrame(dataFrame,  width=1000, height=600, padx=20, bg="Grey
 dataFrameLeft.pack(side=LEFT)
 
 dataFrameRight = LabelFrame(dataFrame, width=450, height=300, padx=31, pady=3, bg="Grey", relief=RIDGE,
-                            font=("aerial", 18, "bold"), text="Veiw Info:\n")
+                            font=("aerial", 18, "bold"), text="View Info:\n")
 dataFrameRight.pack(side=RIGHT)
 
 # create a label
@@ -103,9 +107,9 @@ ageEntry.grid(row=3, column=1, sticky=W)
 parentsContact = Label(dataFrameLeft, font=(
     "aerial", 15, "bold"), text="Parents Contact:", padx=2, pady=2, bg="Grey")
 parentsContact.grid(row=4, column=0, sticky=W)
-parentsContact = Entry(dataFrameLeft, font=(
+parentsContactEntry = Entry(dataFrameLeft, font=(
     "Comfortaa Light", 15, "bold"),  width=39)
-parentsContact.grid(row=4, column=1, sticky=W)
+parentsContactEntry.grid(row=4, column=1, sticky=W)
 
 Gender = Label(dataFrameLeft, font=("aerial", 15, "bold"),
                   text="Gender:", padx=2, pady=2, bg="Grey")
