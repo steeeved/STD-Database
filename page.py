@@ -9,8 +9,6 @@ root.iconbitmap("digikids.ico")
 root.geometry("1250x650")
 
 # Using RGB colors
-
-
 def rgb(rgb):
     return "#%02x%02x%02x" % rgb
 
@@ -52,6 +50,7 @@ def displayData():
     for row in Database.viewData():
         studentList.insert(END, row, str(""))
 
+
 def studentRec(event):
     global sd
     searchStd = studentList.curselection()[0]
@@ -78,23 +77,28 @@ def studentRec(event):
     comboCourse.delete(0, END)
     comboCourse.insert(END, sd[7])
 
+
 def deleteData():
-    if (len(admissionNoEntry.get()) !=0):
+    if (len(admissionNoEntry.get()) != 0):
         Database.deleteRec(sd[0])
         clearData()
         displayData()
 
 
 def searchData():
-    pass
+    studentList.delete(0, END)
+    for row in Database.searchData(admissionNoEntry.get(), fullNameEntry.get(), birthDateEntry.get(), ageEntry.get(), parentsContactEntry.get(), comboGender.get(), comboCourse.get()):
+        studentList.insert(END, row, str(""))
 
 
 def updateData():
-    pass
-
-
-def studentRec():
-    pass
+    if (len(admissionNoEntry.get()) !=0):
+        Database.deleteRec(sd[0])
+        Database.addStudentRecord(admissionNoEntry.get(), fullNameEntry.get(), birthDateEntry.get(
+        ), ageEntry.get(), parentsContactEntry.get(), comboGender.get(), comboCourse.get())
+        studentList.delete(0, END)
+        studentList.insert(END, (admissionNoEntry.get(), fullNameEntry.get(), birthDateEntry.get(
+        ), ageEntry.get(), parentsContactEntry.get(), comboGender.get(), comboCourse.get()))
 
 
 # frames
@@ -168,7 +172,7 @@ Gender = Label(dataFrameLeft, font=("aerial", 15, "bold"),
 Gender.grid(row=5, column=0, sticky=W)
 comboGender = Combobox(dataFrameLeft, font=(
     "Comfortaa Light", 15, "bold"), width=37)
-comboGender["values"] = ("Male", "Female")
+comboGender["values"] = ("--choose--", "Male", "Female")
 comboGender.current(0)
 comboGender.grid(row=5, column=1, sticky=W)
 
